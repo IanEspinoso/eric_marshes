@@ -6,10 +6,10 @@ class Ship:
     def __init__(self, ai_game):
         """Initializes the spaceship and defines its initial position"""
         self.screen = ai_game.screen
-        slef.screen_rect = ai_game.screen.get_rect()
+        self.screen_rect = ai_game.screen.get_rect()
 
         # Uploads the spaceship's image and retrieves its rect
-        self.image = pygame.image.load('images/ship.bmp')
+        self.image = pygame.image.load('images/sertanejo.bmp')
         self.rect = self.image.get_rect()
 
         # Starts each new spaceship in the bottom left of the screen
