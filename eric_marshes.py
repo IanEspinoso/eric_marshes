@@ -3,7 +3,7 @@ import pygame
 from settings import Settings
 from ship import Ship
 
-class AlienInvasion:
+class EricMarshes:
     """General class to manage actions and behaviors within the game"""
     
     def __init__(self):
@@ -14,7 +14,7 @@ class AlienInvasion:
 
         self.screen = pygame.display.set_mode(
             (self.settings.screen_width, self.settings.screen_height))
-        pygame.display.set_caption("Alien Invasion")
+        pygame.display.set_caption("Eric Marshes")
 
         self.ship = Ship(self)
     
@@ -42,5 +42,5 @@ class AlienInvasion:
 
 if __name__ == '__main__':
     # Instantiates and executes the game
-    ai = AlienInvasion()
-    ai.run_game()
+    em = EricMarshes()
+    em.run_game()

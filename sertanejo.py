@@ -3,10 +3,10 @@ import pygame
 class Ship:
     """Class to take care of the spaceship"""
 
-    def __init__(self, ai_game):
+    def __init__(self, em_game):
         """Initializes the spaceship and defines its initial position"""
-        self.screen = ai_game.screen
-        self.screen_rect = ai_game.screen.get_rect()
+        self.screen = em_game.screen
+        self.screen_rect = em_game.screen.get_rect()
 
         # Uploads the spaceship's image and retrieves its rect
         # I changed it, so it also handles the image transparency
