@@ -1,14 +1,14 @@
 import pygame
 
-class Ship:
-    """Class to take care of the spaceship"""
+class Sertanejo:
+    """Class to take care of the sertanejo"""
 
     def __init__(self, em_game):
-        """Initializes the spaceship and defines its initial position"""
+        """Initializes the sertanejo and defines its initial position"""
         self.screen = em_game.screen
         self.screen_rect = em_game.screen.get_rect()
 
-        # Uploads the spaceship's image and retrieves its rect
+        # Uploads the sertanejo's image and retrieves its rect
         # I changed it, so it also handles the image transparency
         self.original_image = pygame.image.load('images/sertanejo.bmp').convert_alpha()
         o_height = self.original_image.get_height()
@@ -18,9 +18,9 @@ class Ship:
         self.image = pygame.transform.scale(self.original_image, adjusted_size)
         self.rect = self.image.get_rect()
 
-        # Starts each new spaceship in the bottom left of the screen
+        # Starts each new sertanejo in the bottom left of the screen
         self.rect.midbottom = self.screen_rect.midbottom
 
     def blitme(self):
-        """Draws the spaceship on its current position"""
+        """Draws the sertanejo on its current position"""
         self.screen.blit(self.image, self.rect)

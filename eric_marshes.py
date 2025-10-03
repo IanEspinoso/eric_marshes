@@ -1,7 +1,7 @@
 import sys
 import pygame
 from settings import Settings
-from ship import Ship
+from sertanejo import Sertanejo
 
 class EricMarshes:
     """General class to manage actions and behaviors within the game"""
@@ -16,13 +16,13 @@ class EricMarshes:
             (self.settings.screen_width, self.settings.screen_height))
         pygame.display.set_caption("Eric Marshes")
 
-        self.ship = Ship(self)
+        self.sertanejo = Sertanejo(self)
     
 
     def run_game(self):
         """Initiates the game's main loop"""
         while True:
-            self.check_events()
+            self._check_events()
             self._update_screen()
             self.clock.tick(60)
     
@@ -35,7 +35,7 @@ class EricMarshes:
     def _update_screen(self):
         """Redraws the screen with each loop"""
         self.screen.fill(self.settings.bg_color)
-        self.ship.blitme()
+        self.sertanejo.blitme()
 
         # Leaves visible the most recently drawn screen
         pygame.display.flip()
