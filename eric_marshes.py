@@ -31,6 +31,10 @@ class EricMarshes:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RIGHT:
+                    # Moves the hero to the right
+                    self.sertanejo.rect.x += 1
     
     def _update_screen(self):
         """Redraws the screen with each loop"""
