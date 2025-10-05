@@ -23,11 +23,14 @@ class Sertanejo:
 
         # Movement flag; starts with a static sertanejo
         self.moving_right = False
+        self.moving_left = False
     
     def update(self):
         """Updates the sertanejo's position based on the movement flag"""
         if self.moving_right:
             self.rect.x += 1
+        if self.moving_left:
+            self.rect.x -= 1
 
     def blitme(self):
         """Draws the sertanejo on its current position"""
