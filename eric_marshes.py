@@ -23,6 +23,7 @@ class EricMarshes:
         """Initiates the game's main loop"""
         while True:
             self._check_events()
+            self.sertanejo.update()
             self._update_screen()
             self.clock.tick(60)
     
@@ -33,8 +34,10 @@ class EricMarshes:
                 sys.exit()
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RIGHT:
-                    # Moves the hero to the right
-                    self.sertanejo.rect.x += 1
+                    self.sertanejo.moving_right = True
+                elif event.type == pygame.KEYUP:
+                    if event.key == pygame.K_RIGHT:
+                        self.ship.moving_right = False
     
     def _update_screen(self):
         """Redraws the screen with each loop"""

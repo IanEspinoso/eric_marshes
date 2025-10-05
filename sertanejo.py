@@ -1,7 +1,7 @@
 import pygame
 
 class Sertanejo:
-    """Class to take care of the sertanejo"""
+    """Class to manage the sertanejo"""
 
     def __init__(self, em_game):
         """Initializes the sertanejo and defines its initial position"""
@@ -18,8 +18,16 @@ class Sertanejo:
         self.image = pygame.transform.scale(self.original_image, adjusted_size)
         self.rect = self.image.get_rect()
 
-        # Starts each new sertanejo in the bottom left of the screen
+        # Starts each new sertanejo in the middle bottom of the screen
         self.rect.midbottom = self.screen_rect.midbottom
+
+        # Movement flag; starts with a static sertanejo
+        self.moving_right = False
+    
+    def update(self):
+        """Updates the sertanejo's position based on the movement flag"""
+        if self.moving_right:
+            self.rect.x += 1
 
     def blitme(self):
         """Draws the sertanejo on its current position"""
