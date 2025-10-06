@@ -9,4 +9,4 @@ class Settings:
         self.bg_color = (15, 20, 60)
 
         # Sertanejo configurations
-        self.sertanejo_speed = 1
+        self.sertanejo_speed = 10

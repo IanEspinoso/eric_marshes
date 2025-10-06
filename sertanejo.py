@@ -32,9 +32,9 @@ class Sertanejo:
     def update(self):
         """Updates the sertanejo's position based on the movement flag"""
         # Updates the sertanejo's x value, not the rect
-        if self.moving_right:
+        if self.moving_right and self.rect.right < self.screen_rect.right:
             self.x += self.settings.sertanejo_speed
-        if self.moving_left:
+        if self.moving_left and self.rect.left > 0:
             self.x -= self.settings.sertanejo_speed
         
         # Updates the rect object from self.x
