@@ -17,7 +17,7 @@ class Settings:
         self.bead_height = 4.5
         self.bead_color = (137, 181, 242)
 
-        # Later: waterdroplets
+        # Waterdroplets configurations
         self.droplet_speed = 2.5
         self.droplet_width = 3
         self.droplet_height = 3
