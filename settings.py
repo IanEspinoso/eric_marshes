@@ -10,3 +10,15 @@ class Settings:
 
         # Sertanejo configurations
         self.sertanejo_speed = 10
+
+        # Waterbeads configurations
+        self.bead_speed = 2.0
+        self.bead_width = 4.5
+        self.bead_height = 4.5
+        self.bead_color = (137, 181, 242)
+
+        # Later: waterdroplets
+        self.droplet_speed = 2.5
+        self.droplet_width = 3
+        self.droplet_height = 3
+        self.droplet_color = (180, 211, 245)
