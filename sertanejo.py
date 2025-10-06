@@ -6,6 +6,7 @@ class Sertanejo:
     def __init__(self, em_game):
         """Initializes the sertanejo and defines its initial position"""
         self.screen = em_game.screen
+        self.settings = em_game.settings
         self.screen_rect = em_game.screen.get_rect()
 
         # Uploads the sertanejo's image and retrieves its rect
@@ -21,16 +22,23 @@ class Sertanejo:
         # Starts each new sertanejo in the middle bottom of the screen
         self.rect.midbottom = self.screen_rect.midbottom
 
+        # Stores a decimal value for the sertanejo's horizontal position
+        self.x = float(self.rect.x)
+
         # Movement flag; starts with a static sertanejo
         self.moving_right = False
         self.moving_left = False
     
     def update(self):
         """Updates the sertanejo's position based on the movement flag"""
+        # Updates the sertanejo's x value, not the rect
         if self.moving_right:
-            self.rect.x += 1
+            self.x += self.settings.sertanejo_speed
         if self.moving_left:
-            self.rect.x -= 1
+            self.x -= self.settings.sertanejo_speed
+        
+        # Updates the rect object from self.x
+        self.rect.x = self.x
 
     def blitme(self):
         """Draws the sertanejo on its current position"""
