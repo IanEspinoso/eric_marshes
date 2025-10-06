@@ -14,7 +14,7 @@ class Bead(Sprite):
         # Creates a bead in (0, 0) and, right away, define the correct position
         self.rect = pygame.Rect(0, 0, self.settings.bead_width,
                                 self.settings.bead_height)
-        self.rect.bidtop = em_game.sertanejo.rect.midtop
+        self.rect.topright = em_game.sertanejo.rect.topright
 
         # Saves the bead's position as a float
         self.y = float(self.rect.y)

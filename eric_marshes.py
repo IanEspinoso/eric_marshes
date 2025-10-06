@@ -51,6 +51,8 @@ class EricMarshes:
             self.sertanejo.moving_left = True
         elif event.key == pygame.K_q:
             sys.exit()
+        elif event.key == pygame.K_SPACE:
+            self._shoot_bead()
     
     def _check_keyup_events(self, event):
         """Responds to key releases"""
@@ -58,10 +60,17 @@ class EricMarshes:
             self.sertanejo.moving_right = False
         elif event.key == pygame.K_LEFT:
             self.sertanejo.moving_left = False
+    
+    def _shoot_bead(self):
+        """Creates a new bead and adds it to the beads group"""
+        new_bead = Bead(self)
+        self.beads.add(new_bead)
 
     def _update_screen(self):
         """Redraws the screen with each loop"""
         self.screen.fill(self.settings.bg_color)
+        for bead in self.beads.sprites():
+            bead.draw_bead()
         self.sertanejo.blitme()
 
         # Leaves visible the most recently drawn screen
