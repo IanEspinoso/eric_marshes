@@ -2,6 +2,7 @@ import sys
 import pygame
 from settings import Settings
 from sertanejo import Sertanejo
+from beads import Bead
 
 class EricMarshes:
     """General class to manage actions and behaviors within the game"""
@@ -17,6 +18,7 @@ class EricMarshes:
         pygame.display.set_caption("Eric Marshes")
 
         self.sertanejo = Sertanejo(self)
+        self.beads = pygame.sprite.Group()
 
         self.clock = pygame.time.Clock()
     
@@ -26,6 +28,7 @@ class EricMarshes:
         while True:
             self._check_events()
             self.sertanejo.update()
+            self.beads.update()
             self._update_screen()
             self.clock.tick(60)
     
