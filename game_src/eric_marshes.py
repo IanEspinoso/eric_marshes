@@ -1,5 +1,6 @@
 import sys
 import pygame
+from random import randint
 from settings import Settings
 from sertanejo import Sertanejo
 from beads import Bead
@@ -83,15 +84,26 @@ class EricMarshes:
         """Creates a fleet of balloons"""
         # Creates a balloon
         balloon = Balloon(self)
-        balloon_width = balloon.rect.width
+        balloon_width, balloon_height = balloon.rect.size
+        
+        current_x, current_y = balloon_width, balloon_height
+        while current_y < (self.settings.screen_height - 19 * balloon_height):
+            while current_x < (self.settings.screen_width - 2 * balloon_width):
+                self._create_balloon(current_x, current_y)
+                random_number = randint(2, 19)
+                current_x += random_number * balloon_width
+            
+            # Ends a row; redefines the x value, and increments the y value
+            current_x = balloon_width
+            current_y += 19 * balloon_height
 
-        current_x = balloon_width
-        while current_x < (self.settings.screen_width - 2 * balloon_width):
-            new_balloon = Balloon(self)
-            new_balloon.rect.x = current_x
-            new_balloon.x = float(new_balloon.rect.x)
-            self.balloons.add(new_balloon)
-            current_x += 11 * balloon_width
+    def _create_balloon(self, x_position, y_position):
+        """Creates a balloon and places it in the current row"""
+        new_balloon = Balloon(self)
+        new_balloon.rect.x = x_position
+        new_balloon.x = x_position
+        new_balloon.rect.y = y_position
+        self.balloons.add(new_balloon)
 
     def _update_screen(self):
         """Redraws the screen with each loop"""
