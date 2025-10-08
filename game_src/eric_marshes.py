@@ -3,6 +3,7 @@ import pygame
 from settings import Settings
 from sertanejo import Sertanejo
 from beads import Bead
+from balloon import Balloon
 
 class EricMarshes:
     """General class to manage actions and behaviors within the game"""
@@ -19,6 +20,9 @@ class EricMarshes:
 
         self.sertanejo = Sertanejo(self)
         self.beads = pygame.sprite.Group()
+        self.balloons = pygame.sprite.Group()
+
+        self._create_fleet()
 
         self.clock = pygame.time.Clock()
     
@@ -50,7 +54,7 @@ class EricMarshes:
             self.sertanejo.moving_right = True
         elif event.key == pygame.K_LEFT:
             self.sertanejo.moving_left = True
-        elif event.key == pygame.K_q:
+        elif event.key == pygame.K_ESCAPE:
             sys.exit()
         elif event.key == pygame.K_SPACE:
             self._shoot_bead()
@@ -74,6 +78,12 @@ class EricMarshes:
         for bead in self.beads.copy():
             if bead.rect.bottom <= 0:
                 self.beads.remove(bead)
+    
+    def _create_fleet(self):
+        """Creates a fleet of balloons"""
+        # Creates a balloon
+        balloon = Balloon(self)
+        self.balloons.add(balloon)
 
     def _update_screen(self):
         """Redraws the screen with each loop"""
@@ -81,6 +91,7 @@ class EricMarshes:
         for bead in self.beads.sprites():
             bead.draw_bead()
         self.sertanejo.blitme()
+        self.balloons.draw(self.screen)
 
         # Leaves visible the most recently drawn screen
         pygame.display.flip()

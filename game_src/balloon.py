@@ -1,7 +1,8 @@
-import pygamefrom pygame.sprite import Sprite
+import pygame 
+from pygame.sprite import Sprite
 
-class Alien(Sprite):
-    """Class to represent a single ballon in the fleet""""
+class Balloon(Sprite):
+    """Class to represent a single ballon in the fleet"""
 
     def __init__(self, em_game):
         """Initializes the ballon and defines its starting position"""
@@ -9,7 +10,12 @@ class Alien(Sprite):
         self.screen = em_game.screen
 
         # Uploads the ballon image and retrieves its rect
-        self.image = pygame.image.load('../misc/ballon_yel_L1.bmp')
+        self.original_image = pygame.image.load('../misc/balloons/yel.bmp')
+        o_height = self.original_image.get_height()
+        o_width = self.original_image.get_width()
+        scale = self.screen.get_height() / (30 * o_height)
+        adjusted_size = (int(o_width * scale), int(o_height * scale))
+        self.image = pygame.transform.scale(self.original_image, adjusted_size)
         self.rect = self.image.get_rect()
 
         # Starts each new ballon near the top left of the screen
