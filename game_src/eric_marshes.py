@@ -34,7 +34,6 @@ class EricMarshes:
             for bead in self.beads.copy():
                 if bead.rect.bottom <= 0:
                     self.beads.remove(bead)
-            print(len(self.beads))
 
             self._update_screen()
             self.clock.tick(60)
@@ -70,8 +69,9 @@ class EricMarshes:
     
     def _shoot_bead(self):
         """Creates a new bead and adds it to the beads group"""
-        new_bead = Bead(self)
-        self.beads.add(new_bead)
+        if len(self.beads) < self.settings.beads_allowed:
+            new_bead = Bead(self)
+            self.beads.add(new_bead)
 
     def _update_screen(self):
         """Redraws the screen with each loop"""
