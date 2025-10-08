@@ -8,6 +8,7 @@ class Balloon(Sprite):
         """Initializes the ballon and defines its starting position"""
         super().__init__()
         self.screen = em_game.screen
+        self.settings = em_game.settings
 
         # Uploads the ballon image and retrieves its rect
         self.original_image = pygame.image.load('../misc/balloons/yel.bmp')
@@ -24,3 +25,8 @@ class Balloon(Sprite):
 
         # Stores the ballon exact horizontal position
         self.x = float(self.rect.x)
+
+    def update(self):
+        """Moves the ballon to the right"""
+        self.x += self.settings.balloon_speed
+        self.rect.x = self.x

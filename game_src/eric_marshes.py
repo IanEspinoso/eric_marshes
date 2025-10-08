@@ -35,6 +35,7 @@ class EricMarshes:
             self.sertanejo.update()
             self.beads.update()
             self._update_beads()
+            self._update_aliens()
             self._update_screen()
             self.clock.tick(60)
     
@@ -80,6 +81,10 @@ class EricMarshes:
             if bead.rect.bottom <= 0:
                 self.beads.remove(bead)
     
+    def _update_balloons(self):
+        """Updates the positions of all balloons in the fleet"""
+        self.balloons.update()
+
     def _create_fleet(self):
         """Creates a fleet of balloons"""
         # Creates a balloon

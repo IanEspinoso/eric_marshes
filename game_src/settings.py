@@ -24,3 +24,6 @@ class Settings:
         self.droplet_height = 4.5
         self.droplet_color = (180, 211, 245)
         self.droplets_allowed = 20
+
+        # Balloon configurations
+        self.balloon_speed = 1.0
