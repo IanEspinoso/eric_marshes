@@ -35,7 +35,7 @@ class EricMarshes:
             self.sertanejo.update()
             self.beads.update()
             self._update_beads()
-            self._update_aliens()
+            self._update_balloons()
             self._update_screen()
             self.clock.tick(60)
     
