@@ -29,6 +29,13 @@ class EricMarshes:
             self._check_events()
             self.sertanejo.update()
             self.beads.update()
+
+            # Get rid of beads that have disappeared
+            for bead in self.beads.copy():
+                if bead.rect.bottom <= 0:
+                    self.beads.remove(bead)
+            print(len(self.beads))
+
             self._update_screen()
             self.clock.tick(60)
     

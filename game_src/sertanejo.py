@@ -11,7 +11,7 @@ class Sertanejo:
 
         # Uploads the sertanejo's image and retrieves its rect
         # I changed it, so it also handles the image transparency
-        self.original_image = pygame.image.load('images/sertanejo_dark_L1.bmp').convert_alpha()
+        self.original_image = pygame.image.load('../misc/sertanejo_dark_L1.bmp').convert_alpha()
         o_height = self.original_image.get_height()
         o_width = self.original_image.get_width()
         scale = self.screen.get_height() / (20 * o_height)
