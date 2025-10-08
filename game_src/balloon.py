@@ -26,7 +26,12 @@ class Balloon(Sprite):
         # Stores the ballon exact horizontal position
         self.x = float(self.rect.x)
 
+    def check_edges(self):
+        """Returns True if the ballon is at the edge of the screen"""
+        screen_rect = self.screen.get_rect()
+        return (self.rect.right >= screen_rect.right or self.rect.left <= 0)
+    
     def update(self):
         """Moves the ballon to the right"""
-        self.x += self.settings.balloon_speed
+        self.x += self.settings.balloon_speed * self.settings.fleet_direction
         self.rect.x = self.x
