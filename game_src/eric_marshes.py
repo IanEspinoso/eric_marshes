@@ -29,12 +29,7 @@ class EricMarshes:
             self._check_events()
             self.sertanejo.update()
             self.beads.update()
-
-            # Get rid of beads that have disappeared
-            for bead in self.beads.copy():
-                if bead.rect.bottom <= 0:
-                    self.beads.remove(bead)
-
+            self._update_beads()
             self._update_screen()
             self.clock.tick(60)
     
@@ -72,6 +67,13 @@ class EricMarshes:
         if len(self.beads) < self.settings.beads_allowed:
             new_bead = Bead(self)
             self.beads.add(new_bead)
+    
+    def _update_beads(self):
+        """Removes beads that have disappeared"""
+        # Removes beads that have gone off the top of the screen
+        for bead in self.beads.copy():
+            if bead.rect.bottom <= 0:
+                self.beads.remove(bead)
 
     def _update_screen(self):
         """Redraws the screen with each loop"""
