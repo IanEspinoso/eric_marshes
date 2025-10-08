@@ -83,7 +83,15 @@ class EricMarshes:
         """Creates a fleet of balloons"""
         # Creates a balloon
         balloon = Balloon(self)
-        self.balloons.add(balloon)
+        balloon_width = balloon.rect.width
+
+        current_x = balloon_width
+        while current_x < (self.settings.screen_width - 2 * balloon_width):
+            new_balloon = Balloon(self)
+            new_balloon.rect.x = current_x
+            new_balloon.x = float(new_balloon.rect.x)
+            self.balloons.add(new_balloon)
+            current_x += 11 * balloon_width
 
     def _update_screen(self):
         """Redraws the screen with each loop"""
