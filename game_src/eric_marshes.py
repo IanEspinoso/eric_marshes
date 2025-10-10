@@ -80,6 +80,10 @@ class EricMarshes:
         for bead in self.beads.copy():
             if bead.rect.bottom <= 0:
                 self.beads.remove(bead)
+        
+        # Verifies if any beads have hit balloons
+        collisions = pygame.sprite.groupcollide(
+            self.beads, self.balloons, True, True)
     
     def _update_balloons(self):
         """Updates the positions of all balloons in the fleet"""
