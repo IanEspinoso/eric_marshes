@@ -43,3 +43,8 @@ class Sertanejo:
     def blitme(self):
         """Draws the sertanejo on its current position"""
         self.screen.blit(self.image, self.rect)
+    
+    def center_sertanejo(self):
+        """Centers the sertanejo on the screen"""
+        self.rect.midbottom = self.screen_rect.midbottom
+        self.x = float(self.rect.x)

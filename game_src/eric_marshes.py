@@ -1,7 +1,9 @@
 import sys
 import pygame
+from time import sleep
 from random import randint
 from settings import Settings
+from gamestats import GameStats
 from sertanejo import Sertanejo
 from beads import Bead
 from balloon import Balloon
@@ -19,6 +21,9 @@ class EricMarshes:
         self.settings.screen_height = self.screen.get_rect().height
         pygame.display.set_caption("Eric Marshes")
 
+        # Creates an instance to store game statistics
+        self.stats = GameStats(self)
+        
         self.sertanejo = Sertanejo(self)
         self.beads = pygame.sprite.Group()
         self.balloons = pygame.sprite.Group()
@@ -93,6 +98,22 @@ class EricMarshes:
             self.beads.empty()
             self._create_fleet()
     
+    def _ship_hit(self):
+        """Responds to the sertanejo being hit by a balloon"""
+        # Decrements sertanejo_left, and updates the scoreboard
+        self.stats.sertanejo_left -= 1
+
+        # Empties the list of balloons and beads
+        self.balloons.empty()
+        self.beads.empty()
+
+        # Creates a new fleet and centers the sertanejo
+        self._create_fleet()
+        self.sertanejo.center_sertanejo()
+
+        # Pauses
+        sleep(0.5)
+
     def _update_balloons(self):
         """Checks if the fleet reached an edge, then updates the positions 
         of all balloons in the fleet"""
@@ -101,7 +122,7 @@ class EricMarshes:
 
         # Looks for balloon-sertanejo collisions
         if pygame.sprite.spritecollideany(self.sertanejo, self.balloons):
-            print("Sertanejo hit!!!")
+            self._ship_hit()
 
     def _create_fleet(self):
         """Creates a fleet of balloons"""
