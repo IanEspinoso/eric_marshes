@@ -114,6 +114,14 @@ class EricMarshes:
         # Pauses
         sleep(0.5)
 
+    def _check_balloons_bottom(self):
+        """Checks if any balloons have reached the bottom of the screen"""
+        for balloon in self.balloons.sprites():
+            if balloon.rect.bottom >= self.settings.screen_height:
+                # Treats this the same as if the sertanejo got hit
+                self._ship_hit()
+                break
+
     def _update_balloons(self):
         """Checks if the fleet reached an edge, then updates the positions 
         of all balloons in the fleet"""
@@ -123,6 +131,9 @@ class EricMarshes:
         # Looks for balloon-sertanejo collisions
         if pygame.sprite.spritecollideany(self.sertanejo, self.balloons):
             self._ship_hit()
+
+        # Looks for balloons that have reached the bottom of the screen
+        self._check_balloons_bottom()
 
     def _create_fleet(self):
         """Creates a fleet of balloons"""
