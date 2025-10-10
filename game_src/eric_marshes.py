@@ -89,7 +89,9 @@ class EricMarshes:
             self._create_fleet()
     
     def _update_balloons(self):
-        """Updates the positions of all balloons in the fleet"""
+        """Checks if the fleet reached an edge, then updates the positions 
+        of all balloons in the fleet"""
+        self._check_fleet_edges()
         self.balloons.update()
 
     def _create_fleet(self):
@@ -116,6 +118,19 @@ class EricMarshes:
         new_balloon.x = x_position
         new_balloon.rect.y = y_position
         self.balloons.add(new_balloon)
+
+    def _check_fleet_edges(self):
+        """Responds appropriately if any balloons have reached an edge"""
+        for balloon in self.balloons.sprites():
+            if balloon.check_edges():
+                self._change_fleet_direction()
+                break
+    
+    def _change_fleet_direction(self):
+        """Drops the entire fleet and changes its direction"""
+        for balloon in self.balloons.sprites():
+            balloon.rect.y += self.settings.fleet_drop_speed
+        self.settings.fleet_direction *= -1
 
     def _update_screen(self):
         """Redraws the screen with each loop"""
