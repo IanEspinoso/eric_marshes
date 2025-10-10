@@ -99,6 +99,10 @@ class EricMarshes:
         self._check_fleet_edges()
         self.balloons.update()
 
+        # Looks for balloon-sertanejo collisions
+        if pygame.sprite.spritecollideany(self.sertanejo, self.balloons):
+            print("Sertanejo hit!!!")
+
     def _create_fleet(self):
         """Creates a fleet of balloons"""
         # Creates a balloon
