@@ -84,6 +84,9 @@ class EricMarshes:
         # Verifies if any beads have hit balloons
         collisions = pygame.sprite.groupcollide(
             self.beads, self.balloons, True, True)
+        if not self.balloons:
+            self.beads.empty()
+            self._create_fleet()
     
     def _update_balloons(self):
         """Updates the positions of all balloons in the fleet"""
