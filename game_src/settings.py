@@ -13,7 +13,7 @@ class Settings:
 
         # Waterbeads configurations
         self.bead_speed = 2.0
-        self.bead_width = 7
+        self.bead_width = 70
         self.bead_height = 7
         self.bead_color = (137, 181, 242)
         self.beads_allowed = 10

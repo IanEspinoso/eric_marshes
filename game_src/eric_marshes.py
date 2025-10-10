@@ -81,10 +81,15 @@ class EricMarshes:
             if bead.rect.bottom <= 0:
                 self.beads.remove(bead)
         
-        # Verifies if any beads have hit balloons
+        self._check_bead_balloon_collisions()
+    
+    def _check_bead_balloon_collisions(self):
+        """Responds to bead-balloon collisions"""
         collisions = pygame.sprite.groupcollide(
             self.beads, self.balloons, True, True)
+        
         if not self.balloons:
+            # Destroys existing beads and creates a new fleet
             self.beads.empty()
             self._create_fleet()
     
