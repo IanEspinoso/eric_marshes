@@ -54,13 +54,15 @@ class EricMarshes:
         """Initiates the game's main loop"""
         while True:
             self._check_events()
-            self.sertanejo.update()
-            self.beads.update()
-            self._update_beads()
-            self._update_balloons()
+
+            if self.game_active:
+                self.sertanejo.update()
+                self._update_beads()
+                self._update_balloons()
+
             self._update_screen()
             self.clock.tick(60)
-    
+        
     def _check_events(self):
         """Responds to keyboard and mouse events"""
         for event in pygame.event.get():
