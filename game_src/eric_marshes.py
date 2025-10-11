@@ -48,7 +48,7 @@ class EricMarshes:
         # self.game_over_sound.set_volume(0.7)
 
         # Initializes Eric Marshes in an active state
-        self.game_active = True
+        self.game_active = False
 
     def run_game(self):
         """Initiates the game's main loop"""
