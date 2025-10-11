@@ -31,7 +31,24 @@ class EricMarshes:
         self._create_fleet()
 
         self.clock = pygame.time.Clock()
-    
+
+        # Initalizes the background music
+        # pygame.mixer.music.load('sounds/background_music.mp3')
+        # pygame.mixer.music.play(-1)  # Loops the music indefinitely
+
+        # Initializes sound effects
+        # self.bead_sound = pygame.mixer.Sound('sounds/bead_shoot.wav')
+
+        # Initializes the game over sound
+        # self.game_over_sound = pygame.mixer.Sound('sounds/game_over.wav')
+
+        # Sets the volume for music and sound effects
+        # pygame.mixer.music.set_volume(0.5)
+        # self.bead_sound.set_volume(0.7)
+        # self.game_over_sound.set_volume(0.7)
+
+        # Initializes Eric Marshes in an active state
+        self.game_active = True
 
     def run_game(self):
         """Initiates the game's main loop"""
@@ -98,28 +115,34 @@ class EricMarshes:
             self.beads.empty()
             self._create_fleet()
     
-    def _ship_hit(self):
+    def _sertanejo_hit(self):
         """Responds to the sertanejo being hit by a balloon"""
-        # Decrements sertanejo_left, and updates the scoreboard
-        self.stats.sertanejo_left -= 1
+        if self.stats.sertanejo_left > 0:
+            # Decrements sertanejo_left
+            self.stats.sertanejo_left -= 1
 
-        # Empties the list of balloons and beads
-        self.balloons.empty()
-        self.beads.empty()
+            # Empties the list of balloons and beads
+            self.balloons.empty()
+            self.beads.empty()
 
-        # Creates a new fleet and centers the sertanejo
-        self._create_fleet()
-        self.sertanejo.center_sertanejo()
+            # Creates a new fleet and centers the sertanejo
+            self._create_fleet()
+            self.sertanejo.center_sertanejo()
 
-        # Pauses
-        sleep(0.5)
+            # Pauses
+            sleep(0.5)
+        else:
+            self.game_active = False
+            # Plays the game over sound
+            # self.game_over_sound.play()
+            pygame.mouse.set_visible(True)
 
     def _check_balloons_bottom(self):
         """Checks if any balloons have reached the bottom of the screen"""
         for balloon in self.balloons.sprites():
             if balloon.rect.bottom >= self.settings.screen_height:
                 # Treats this the same as if the sertanejo got hit
-                self._ship_hit()
+                self._sertanejo_hit()
                 break
 
     def _update_balloons(self):
@@ -130,7 +153,7 @@ class EricMarshes:
 
         # Looks for balloon-sertanejo collisions
         if pygame.sprite.spritecollideany(self.sertanejo, self.balloons):
-            self._ship_hit()
+            self._sertanejo_hit()
 
         # Looks for balloons that have reached the bottom of the screen
         self._check_balloons_bottom()

@@ -27,7 +27,7 @@ class Settings:
         self.droplets_allowed = 20
 
         # Balloon configurations
-        self.balloon_speed = 1
+        self.balloon_speed = 10
         self.fleet_drop_speed = 100
         # fleet_direction of 1 represents right; -1 represents left
         self.fleet_direction = 1
