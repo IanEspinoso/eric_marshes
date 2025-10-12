@@ -9,7 +9,7 @@ class Settings:
         self.bg_color = (15, 20, 60)
 
         # Sertanejo configurations
-        self.sertanejo_speed = 10
+        self.sertanejo_speed = 5
         self.sertanejo_limit = 3
 
         # Waterbeads configurations
@@ -27,7 +27,25 @@ class Settings:
         self.droplets_allowed = 20
 
         # Balloon configurations
-        self.balloon_speed = 10
+        self.balloon_speed = 5
         self.fleet_drop_speed = 10
+
+        # Rate of game acceleration
+        self.speedup_scale = 1.1
+
+        self.initialize_dynamic_settings()
+
+    def initialize_dynamic_settings(self):
+        """Initializes the configurations that change along the game"""
+        self.sertanejo_speed = 1.5
+        self.bead_speed = 2.5
+        self.balloon_speed = 1.0
+
         # fleet_direction of 1 represents right; -1 represents left
         self.fleet_direction = 1
+
+    def increase_speed(self):
+        """Increments the speed elements"""
+        self.sertanejo_speed *= self.speedup_scale
+        self.bead_speed *= self.speedup_scale
+        self.balloon_speed *= self.speedup_scale

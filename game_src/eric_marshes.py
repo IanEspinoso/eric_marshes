@@ -144,6 +144,7 @@ class EricMarshes:
             # Destroys existing beads and creates a new fleet
             self.beads.empty()
             self._create_fleet()
+            self.settings.increase_speed()
     
     def _sertanejo_hit(self):
         """Responds to the sertanejo being hit by a balloon"""
