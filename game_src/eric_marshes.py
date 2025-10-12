@@ -82,7 +82,8 @@ class EricMarshes:
 
     def  _check_play_button(self, mouse_pos):
         """Starts a new game when the player clicks Play"""
-        if self.play_button.rect.collidepoint(mouse_pos):
+        button_clicked = self.play_button.rect.collidepoint(mouse_pos)
+        if button_clicked and not self.game_active:
             # Redefines the game statistics
             self.stats.reset_stats()
             self.game_active = True
