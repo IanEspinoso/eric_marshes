@@ -96,6 +96,9 @@ class EricMarshes:
             self._create_fleet()
             self.sertanejo.center_sertanejo()
 
+            # Hides the mouse cursor
+            pygame.mouse.set_visible(False)
+
     def _check_keydown_events(self, event):
         """Responds to keypresses"""
         if event.key == pygame.K_RIGHT:
