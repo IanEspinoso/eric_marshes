@@ -61,7 +61,6 @@ class EricMarshes:
 
             if self.game_active:
                 self.sertanejo.update()
-                self.beads.update()
                 self._update_beads()
                 self._update_balloons()
 
@@ -77,8 +76,15 @@ class EricMarshes:
                 self._check_keydown_events(event)
             elif event.type == pygame.KEYUP:
                 self._check_keyup_events(event)
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = pygame.mouse.get_pos()
+                self._check_play_button(mouse_pos)
 
-    
+    def  _check_play_button(self, mouse_pos):
+        """Starts a new game when the player clicks Play"""
+        if self.play_button.rect.collidepoint(mouse_pos):
+            self.game_active = True
+
     def _check_keydown_events(self, event):
         """Responds to keypresses"""
         if event.key == pygame.K_RIGHT:
@@ -105,6 +111,9 @@ class EricMarshes:
     
     def _update_beads(self):
         """Removes beads that have disappeared"""
+        # Updates the position of the beads
+        self.beads.update()
+
         # Removes beads that have gone off the top of the screen
         for bead in self.beads.copy():
             if bead.rect.bottom <= 0:
