@@ -83,7 +83,17 @@ class EricMarshes:
     def  _check_play_button(self, mouse_pos):
         """Starts a new game when the player clicks Play"""
         if self.play_button.rect.collidepoint(mouse_pos):
+            # Redefines the game statistics
+            self.stats.reset_stats()
             self.game_active = True
+
+            # Removes any remaining beads and ballons
+            self.beads.empty()
+            self.balloons.empty()
+
+            # Creates a new fleet and centers out the hero
+            self._create_fleet()
+            self.sertanejo.center_sertanejo()
 
     def _check_keydown_events(self, event):
         """Responds to keypresses"""
