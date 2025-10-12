@@ -7,6 +7,7 @@ from gamestats import GameStats
 from sertanejo import Sertanejo
 from beads import Bead
 from balloon import Balloon
+from button import Button
 
 class EricMarshes:
     """General class to manage actions and behaviors within the game"""
@@ -50,6 +51,9 @@ class EricMarshes:
         # Initializes Eric Marshes in an active state
         self.game_active = False
 
+        # Creates the Play button
+        self.play_button = Button(self, "Play")
+
     def run_game(self):
         """Initiates the game's main loop"""
         while True:
@@ -57,12 +61,13 @@ class EricMarshes:
 
             if self.game_active:
                 self.sertanejo.update()
+                self.beads.update()
                 self._update_beads()
                 self._update_balloons()
 
             self._update_screen()
             self.clock.tick(60)
-        
+
     def _check_events(self):
         """Responds to keyboard and mouse events"""
         for event in pygame.event.get():
@@ -167,7 +172,7 @@ class EricMarshes:
         balloon_width, balloon_height = balloon.rect.size
         
         current_x, current_y = balloon_width, balloon_height
-        while current_y < (self.settings.screen_height - 19 * balloon_height):
+        while current_y < (self.settings.screen_height - 11 * balloon_height):
             while current_x < (self.settings.screen_width - 2 * balloon_width):
                 self._create_balloon(current_x, current_y)
                 random_number = randint(2, 19)
@@ -175,7 +180,7 @@ class EricMarshes:
             
             # Ends a row; redefines the x value, and increments the y value
             current_x = balloon_width
-            current_y += 19 * balloon_height
+            current_y += 5 * balloon_height
 
     def _create_balloon(self, x_position, y_position):
         """Creates a balloon and places it in the current row"""
@@ -205,6 +210,10 @@ class EricMarshes:
             bead.draw_bead()
         self.sertanejo.blitme()
         self.balloons.draw(self.screen)
+
+        # Draws the play button if the game is inactive
+        if not self.game_active:
+            self.play_button.draw_button()
 
         # Leaves visible the most recently drawn screen
         pygame.display.flip()
