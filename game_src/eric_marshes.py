@@ -84,6 +84,9 @@ class EricMarshes:
         """Starts a new game when the player clicks Play"""
         button_clicked = self.play_button.rect.collidepoint(mouse_pos)
         if button_clicked and not self.game_active:
+            # Redefines the game settings
+            self.settings.initialize_dynamic_settings()
+            
             # Redefines the game statistics
             self.stats.reset_stats()
             self.game_active = True
