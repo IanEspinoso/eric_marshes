@@ -91,6 +91,7 @@ class EricMarshes:
             
             # Redefines the game statistics
             self.stats.reset_stats()
+            self.sb.prep_score()
             self.game_active = True
 
             # Removes any remaining beads and ballons
