@@ -12,7 +12,7 @@ class Scoreboard:
         self.stats = em_game.stats
 
         # Font settings for score information
-        self.text_color = (30, 30, 30)
+        self.text_color = (255, 255, 255)
         self.font = pygame.font.SysFont(None, 48)
 
         # Prepares the initial score image
@@ -26,7 +26,7 @@ class Scoreboard:
         
         # Displays the score on the top right corner of the screen
         self.score_rect = self.score_image.get_rect()
-        self.score_rect.right = self..screen_rect.right - 20
+        self.score_rect.right = self.screen_rect.right - 20
         self.score_rect.top = 20
 
     def show_score(self):

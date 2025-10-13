@@ -45,6 +45,9 @@ class Settings:
         # fleet_direction of 1 represents right; -1 represents left
         self.fleet_direction = 1
 
+        # Score configurations
+        self.balloon_points = 50
+
     def increase_speed(self):
         """Increments the speed elements"""
         self.sertanejo_speed *= self.speedup_scale

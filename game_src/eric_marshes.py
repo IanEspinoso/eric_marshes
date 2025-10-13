@@ -4,6 +4,7 @@ from time import sleep
 from random import randint
 from settings import Settings
 from gamestats import GameStats
+from scoreboard import Scoreboard
 from sertanejo import Sertanejo
 from beads import Bead
 from balloon import Balloon
@@ -24,6 +25,7 @@ class EricMarshes:
 
         # Creates an instance to store game statistics
         self.stats = GameStats(self)
+        self.sb = Scoreboard(self)
         
         self.sertanejo = Sertanejo(self)
         self.beads = pygame.sprite.Group()
@@ -143,6 +145,10 @@ class EricMarshes:
         collisions = pygame.sprite.groupcollide(
             self.beads, self.balloons, True, True)
         
+        if collisions:
+            self.stats.score += self.settings.balloon_points
+            self.sb.prep_score()
+
         if not self.balloons:
             # Destroys existing beads and creates a new fleet
             self.beads.empty()
@@ -238,7 +244,10 @@ class EricMarshes:
         self.sertanejo.blitme()
         self.balloons.draw(self.screen)
 
-        # Draws the play button if the game is inactive
+        # Draws the score information
+        self.sb.show_score()
+
+        # Draws the Play button if the game is inactive
         if not self.game_active:
             self.play_button.draw_button()
 
