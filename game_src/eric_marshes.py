@@ -147,7 +147,8 @@ class EricMarshes:
             self.beads, self.balloons, True, True)
         
         if collisions:
-            self.stats.score += self.settings.balloon_points
+            for balloons in collisions.values():
+                self.stats.score += self.settings.balloon_points * len(balloons)
             self.sb.prep_score()
 
         if not self.balloons:
