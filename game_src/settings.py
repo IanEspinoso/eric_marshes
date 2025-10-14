@@ -34,6 +34,9 @@ class Settings:
         # Rate of game acceleration
         self.speedup_scale = 1.1
 
+        # Defines the speed at which the balloon points increase
+        self.score_scale = 1.5
+
         self.initialize_dynamic_settings()
 
     def initialize_dynamic_settings(self):
@@ -53,3 +56,6 @@ class Settings:
         self.sertanejo_speed *= self.speedup_scale
         self.bead_speed *= self.speedup_scale
         self.balloon_speed *= self.speedup_scale
+
+        self.balloon_points = int(self.balloon_points * self.score_scale)
+        print(self.balloon_points)
