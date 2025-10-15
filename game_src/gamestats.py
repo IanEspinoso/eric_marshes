@@ -12,3 +12,4 @@ class GameStats:
         """Initializes statistics that can change during the game."""
         self.sertanejo_left = self.settings.sertanejo_limit
         self.score = 0
+        self.level = 1

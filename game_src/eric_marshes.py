@@ -92,6 +92,7 @@ class EricMarshes:
             # Redefines the game statistics
             self.stats.reset_stats()
             self.sb.prep_score()
+            self.sb.prep_level()
             self.game_active = True
 
             # Removes any remaining beads and ballons
@@ -157,6 +158,10 @@ class EricMarshes:
             self.beads.empty()
             self._create_fleet()
             self.settings.increase_speed()
+
+            # increases the level
+            self.stats.level += 1
+            self.sb.prep_level()
     
     def _sertanejo_hit(self):
         """Responds to the sertanejo being hit by a balloon"""
