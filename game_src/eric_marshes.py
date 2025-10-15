@@ -150,6 +150,7 @@ class EricMarshes:
             for balloons in collisions.values():
                 self.stats.score += self.settings.balloon_points * len(balloons)
             self.sb.prep_score()
+            self.sb.check_high_score()
 
         if not self.balloons:
             # Destroys existing beads and creates a new fleet

@@ -5,6 +5,8 @@ class GameStats:
         """Initializes statistics."""
         self.settings = em_game.settings
         self.reset_stats()
+        # Max score shouldn't be rewritten
+        self.high_score = 0
 
     def reset_stats(self):
         """Initializes statistics that can change during the game."""
