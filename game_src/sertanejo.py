@@ -1,10 +1,12 @@
 import pygame
+from pygame.sprite import Sprite
 
-class Sertanejo:
+class Sertanejo(Sprite):
     """Class to manage the sertanejo"""
 
     def __init__(self, em_game):
         """Initializes the sertanejo and defines its initial position"""
+        super().__init__()
         self.screen = em_game.screen
         self.settings = em_game.settings
         self.screen_rect = em_game.screen.get_rect()

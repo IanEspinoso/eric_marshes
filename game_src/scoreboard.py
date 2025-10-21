@@ -1,11 +1,13 @@
 import pygame.font
+from pygame.sprite import Group
+from sertanejo import Sertanejo
 
 class Scoreboard:
     """A class to report scoring information"""
 
     def __init__(self, em_game):
         """Initializes the scoring attributes"""
-
+        self.em_game = em_game
         self.screen = em_game.screen
         self.screen_rect= self.screen.get_rect()
         self.settings = em_game.settings
@@ -19,6 +21,7 @@ class Scoreboard:
         self.prep_score()
         self.prep_high_score()
         self.prep_level()
+        self.prep_sertanejos()
 
     def check_high_score(self):
         """ Verifies if there is a new max score """
@@ -48,6 +51,15 @@ class Scoreboard:
         self.level_rect = self.level_image.get_rect()
         self.level_rect.right = self.score_rect.right
         self.level_rect.top = self.score_rect.bottom + 10
+    
+    def prep_sertanejos(self):
+        """Displays the remaining sertanejos"""
+        self.sertanejos = Group()
+        for sertanejo_number in range(self.stats.sertanejos_left):
+            sertanejo = Sertanejo(self.em_game)
+            sertanejo.rect.x = 10 + sertanejo_number * sertanejo.rect.width
+            sertanejo.rect.y = 10
+            self.sertanejos.add(sertanejo)
 
     def prep_high_score(self):
         """ Transforms the scoring into a rendered image """
@@ -66,3 +78,4 @@ class Scoreboard:
         self.screen.blit(self.score_image, self.score_rect)
         self.screen.blit(self.high_score_image, self.high_score_rect)
         self.screen.blit(self.level_image, self.level_rect)
+        self.sertanejos.draw(self.screen)

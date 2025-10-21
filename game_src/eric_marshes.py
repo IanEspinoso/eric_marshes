@@ -93,6 +93,7 @@ class EricMarshes:
             self.stats.reset_stats()
             self.sb.prep_score()
             self.sb.prep_level()
+            self.sb.prep_sertanejos()
             self.game_active = True
 
             # Removes any remaining beads and ballons
@@ -165,9 +166,10 @@ class EricMarshes:
     
     def _sertanejo_hit(self):
         """Responds to the sertanejo being hit by a balloon"""
-        if self.stats.sertanejo_left > 0:
-            # Decrements sertanejo_left
-            self.stats.sertanejo_left -= 1
+        if self.stats.sertanejos_left > 0:
+            # Decrements sertanejos_left and updates scoreboard
+            self.stats.sertanejos_left -= 1
+            self.sb.prep_sertanejos()
 
             # Empties the list of balloons and beads
             self.balloons.empty()

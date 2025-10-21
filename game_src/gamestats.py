@@ -10,6 +10,6 @@ class GameStats:
 
     def reset_stats(self):
         """Initializes statistics that can change during the game."""
-        self.sertanejo_left = self.settings.sertanejo_limit
+        self.sertanejos_left = self.settings.sertanejo_limit
         self.score = 0
         self.level = 1
