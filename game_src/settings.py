@@ -58,4 +58,3 @@ class Settings:
         self.balloon_speed *= self.speedup_scale
 
         self.balloon_points = int(self.balloon_points * self.score_scale)
-        print(self.balloon_points)

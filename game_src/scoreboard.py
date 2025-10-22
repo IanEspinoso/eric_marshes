@@ -28,6 +28,7 @@ class Scoreboard:
         if self.stats.score > self.stats.high_score:
             self.stats.high_score = self.stats.score
             self.prep_high_score()
+            self.record_high_score()
 
     def prep_score(self):
         """Turns the score into a rendered image"""
@@ -72,6 +73,12 @@ class Scoreboard:
         self.high_score_rect = self.high_score_image.get_rect()
         self.high_score_rect.centerx = self.screen_rect.centerx
         self.high_score_rect.top = self.score_rect.top
+
+    def record_high_score(self):
+        """ Records the most recent high score """
+        filename = "../misc/high_score.txt"
+        with open(filename, 'w') as file:
+            file.write(str(self.stats.high_score))
 
     def show_score(self):
         """Draws the score on the screen"""
