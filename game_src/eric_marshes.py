@@ -153,16 +153,20 @@ class EricMarshes:
                 self.stats.score += self.settings.balloon_points * len(balloons)
             self.sb.prep_score()
             self.sb.check_high_score()
-
+        
         if not self.balloons:
-            # Destroys existing beads and creates a new fleet
-            self.beads.empty()
-            self._create_fleet()
-            self.settings.increase_speed()
+            # Starts a new level
+            self.start_new_level()
 
-            # increases the level
-            self.stats.level += 1
-            self.sb.prep_level()
+    def start_new_level(self):
+        # Destroys existing beads and creates a new fleet
+        self.beads.empty()
+        self._create_fleet()
+        self.settings.increase_speed()
+
+        # Increases the level
+        self.stats.level += 1
+        self.sb.prep_level()
     
     def _sertanejo_hit(self):
         """Responds to the sertanejo being hit by a balloon"""
