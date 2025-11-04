@@ -5,14 +5,17 @@ from random_walk import RandomWalk
 # Keeps creating new walks, while the program remains active
 while True:
     # Calls a random walk
-    rw = RandomWalk(50_000)
+    rw = RandomWalk(5_000)
     rw.fill_walk()
     # Plots the walk's steps
     plt.style.use('classic')
     fig, ax = plt.subplots()
     point_numbers = range(rw.num_points)
+    # Plotting dots
     ax.scatter(rw.x_values, rw.y_values, c=point_numbers, cmap=plt.cm.Blues, 
-               edgecolors='none', s=1)
+               edgecolors='none', s=3)
+    # Plotting track
+    # ax.plot(rw.x_values, rw.y_values, color='red', linewidth=1)
     ax.set_aspect('equal')
 
     # Highlights the first and last elements
