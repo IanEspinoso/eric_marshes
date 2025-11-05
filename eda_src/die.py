@@ -2,7 +2,7 @@ from random import randint
 class Die:
     """ Class to represent a single die """
 
-    def __inet__(self, num_sides=6):
+    def __init__(self, num_sides=6):
         """ Makes the supposition that a die has six sides """
         self.num_sides = num_sides
 
