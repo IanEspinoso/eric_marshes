@@ -20,11 +20,12 @@ for row in reader:
     highs.append(high)
     lows.append(low)
 
-# Plots the maximum temperatures
+# Plots the maximum and minimum temperatures
 plt.style.use('fast')
 fig, ax = plt.subplots()
-ax.plot(dates, highs, color='red')
-ax.plot(dates, lows, color='blue')
+ax.plot(dates, highs, color='red', alpha=0.5)
+ax.plot(dates, lows, color='blue', alpha=0.5)
+ax.fill_between(dates, highs, lows, facecolor='blue', alpha=0.1)
 
 # Formats the chart
 ax.set_title("Daily High and Low Temperatures, 2021", fontsize=24)
