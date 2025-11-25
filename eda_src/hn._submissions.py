@@ -1,5 +1,6 @@
 from operator import itemgetter
 import requests
+import plotly.express as px
 
 # Creates an API call and verifies the response
 url = "https://hacker-news.firebaseio.com/v0/topstories.json"
@@ -7,26 +8,43 @@ r = requests.get(url)
 print(f"Status code: {r.status_code}")
 
 # Processes the information about each article contribution
-submission_ids = r.json()
-submission_dicts = []
-for submission_id in submission_ids[:5]:
-    # Creates a new API call for each article contribution
-    url = f"https://hacker-news.firebaseio.com/v0/item/{submission_id}.json"
-    r = requests.get(url)
-    print(f"id: {submission_id}\tstatus: {r.status_code}")
-    response_dict = r.json()
-    # Creates a dictionary for each article
-    submission_dict = {
-        'title': response_dict['title'],
-        'hn_link': f"https://news.ycombinator.com/item?id={submission_id}",
-        'comments': response_dict['descendants'],
-    }
-    submission_dicts.append(submission_dict)
+sub_ids = r.json()
+sub_dicts = []
+for sub_id in sub_ids[:25]:
+    try:
+        # Creates a new API call for each article contribution
+        url = f"https://hacker-news.firebaseio.com/v0/item/{sub_id}.json"
+        r = requests.get(url)
+        print(f"id: {sub_id}\tstatus: {r.status_code}")
+        response_dict = r.json()
+        # Creates a dictionary for each article
+        sub_dict = {
+            'title': response_dict['title'],
+            'hn_link': f"https://news.ycombinator.com/item?id={sub_id}",
+            'comments': response_dict['descendants'],
+        }
+        sub_dicts.append(sub_dict)
+    except KeyError:
+        print(f"{sub_id} had its comments deactivated.")
 
-submission_dicts = sorted(submission_dicts, key=itemgetter('comments'), 
-                          reverse=True)
+sub_dicts = sorted(sub_dicts, key=itemgetter('comments'), reverse=True)
 
-for submission_dict in submission_dicts:
-    print(f"\nTitle: {submission_dict['title']}")
-    print(f"Discussion link: {submission_dict['hn_link']}")
-    print(f"Comments: {submission_dict['comments']}")
+# Processes the information on the repositories
+sub_links, comments, sub_titles = [], [], []
+for sub_dict in sub_dicts:
+    sub_titles.append(sub_dict['title'])
+    comments.append(sub_dict['comments'])
+    sub_links.append(f"<a href='{sub_dict['hn_link']}'>{sub_dict['title']}</a>")
+
+# Creates a visual representation
+title = "Most-Commented Hacker News Articles"
+labels = {'x': 'Article', 'y': 'Comments'}
+fig = px.bar(x=sub_links, y=comments, title=title, labels=labels, 
+             hover_name=sub_titles)
+
+fig.update_layout(title_font_size=28, xaxis_title_font_size=20,
+                  yaxis_title_font_size=20)
+
+fig.update_traces(marker_color='darkorange', marker_opacity=0.6)
+
+fig.show()
