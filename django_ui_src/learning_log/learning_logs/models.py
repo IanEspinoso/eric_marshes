@@ -18,6 +18,9 @@ class Entry(models.Model):
     class Meta:
         verbose_name_plural = 'entries'
 
-        def __str__(self):
-            """ Returns a simple string to represent the entry """
+    def __str__(self):
+        """ Returns a simple string to represent the entry """
+        if len(self.text) > 50:
             return f"{self.text[:50]}..."
+        else:
+            return self.text
